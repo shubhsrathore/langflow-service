@@ -1,2 +1,19 @@
 langflow==1.2.0
-uvicorn[standard]>=0.30.0,<1.0.0  # ← if needed
+
+# Common AI/LLM tooling
+openai>=1.0.0
+langchain>=0.1.0
+
+# Vector store / embeddings (optional, but popular)
+faiss-cpu
+chromadb
+
+# Utils / data
+pandas
+requests
+
+# Clipboard & parsing (optional)
+pyperclip
+beautifulsoup4
+
+# Uvicorn not needed explicitly (Langflow pins a good version)
