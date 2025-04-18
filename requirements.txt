@@ -1,0 +1,2 @@
+pip install pip-tools           # if you don’t already have it
+pip-compile --generate-hashes  # reads pyproject.toml or requirements.in
