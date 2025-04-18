@@ -1,1 +1,2 @@
 langflow==1.2.0
+uvicorn[standard]==0.23.1   # optional, if you want pin
