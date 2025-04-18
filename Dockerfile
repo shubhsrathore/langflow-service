@@ -19,4 +19,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # 4) Expose and launch
 EXPOSE 7860
-CMD ["langflow", "run", "--api", "--host", "0.0.0.0", "--port", "7860"]
+CMD ["langflow", "run", "--host", "0.0.0.0", "--port", "7860"]
