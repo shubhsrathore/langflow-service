@@ -1,3 +1,5 @@
-fastapi
 langflow
-starlette
+uvicorn
+python-multipart
+aiofiles
+gunicorn
