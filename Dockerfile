@@ -1,24 +1,33 @@
+# Use a base image with Python
 FROM python:3.10-slim
 
-# Give pip more time, more retries, no cache, and use the simple index
-ENV PIP_NO_CACHE_DIR=1 \
-    PIP_DEFAULT_TIMEOUT=100 \
-    PIP_RETRIES=5 \
-    PIP_INDEX_URL=https://pypi.org/simple
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
+# Set working directory
 WORKDIR /app
 
-# Copy and install dependencies
+# Install OS dependencies
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    curl \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy requirement files
 COPY requirements.txt .
+COPY constraints.txt .
 
-# 1. Upgrade pip itself
-RUN pip install --upgrade pip \
-    && \
-# 2. Install with our enhanced settings
-    pip install -r requirements.txt
+# Install Python dependencies with constraint
+RUN pip install --upgrade pip
+RUN pip install --no-cache-dir -r requirements.txt --constraint constraints.txt
 
-# Copy your Langflow code
+# Copy your FastAPI and Langflow app code
 COPY . .
 
+# Expose the port FastAPI/Langflow will run on
 EXPOSE 7860
-CMD ["langflow", "run", "--host", "0.0.0.0", "--port", "7860"]
+
+# Start Langflow with FastAPI
+CMD ["langflow", "run"]
