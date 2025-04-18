@@ -1,5 +1,4 @@
-langflow
-uvicorn
-python-multipart
-aiofiles
-gunicorn
+fastapi
+langflow==1.2.0
+starlette
+e2b_code_interpreter==0  # force failure to install this
